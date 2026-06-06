@@ -1,0 +1,10 @@
+{
+  "name": "AnarchI Core",
+  "version": "0.2.0",
+  "author": "AnarchI",
+  "description": "Rust resource trim and cloud bridge engine for AI, blockchain, and high-demand local workloads.",
+  "license": "Proprietary",
+  "entry": "target/release/anarchi-core.exe",
+  "market_position": "Plug-and-play local optimization plus cloud resource bridging",
+  "archived_legacy_path": "-old-parts-bin-temp"
+}

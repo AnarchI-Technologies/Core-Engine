@@ -1,0 +1,11 @@
+<svg width="1080" height="300" viewBox="0 0 1080 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AnarchI wordmark</title>
+  <desc id="desc">AnarchI wordmark with emphasis on A and I for AI infrastructure.</desc>
+  <rect width="1080" height="300" rx="24" fill="#090B0E"/>
+  <text x="64" y="188" fill="#EEF3F8" font-family="Segoe UI, Arial, sans-serif" font-size="132" font-weight="800" letter-spacing="0">Anarch</text>
+  <text x="595" y="188" fill="#4D8DFF" font-family="Segoe UI, Arial, sans-serif" font-size="132" font-weight="900" letter-spacing="0">I</text>
+  <path d="M72 224H620" stroke="#45C486" stroke-width="10"/>
+  <text x="665" y="124" fill="#95A3B3" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" letter-spacing="6">GENESIS DAEMON</text>
+  <text x="665" y="178" fill="#95A3B3" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" letter-spacing="6">PROTOCOLS</text>
+  <text x="665" y="232" fill="#4D8DFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="5">AI INFRASTRUCTURE</text>
+</svg>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AnarchI Core</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <aside class="rail" aria-label="Primary">
+      <div class="brand">
+        <div class="mark">AI</div>
+        <div>
+          <strong>AnarchI Core</strong>
+          <span>Optimization Layer</span>
+        </div>
+      </div>
+      <nav>
+        <button class="nav active" data-view="dashboard">Dashboard</button>
+        <button class="nav" data-view="trim">Trim</button>
+        <button class="nav" data-view="bridge">Bridge</button>
+        <button class="nav" data-view="plugins">Plugins</button>
+        <button class="nav" data-view="logs">Logs</button>
+      </nav>
+      <section class="node">
+        <span class="label">Node</span>
+        <strong>Local Host</strong>
+        <small>Dry-run armed</small>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div>
+          <span class="label">Target</span>
+          <input id="target" value="https://example.com" aria-label="Target URL or executable">
+        </div>
+        <div class="requirements">
+          <label><span>RAM</span><input id="ram" type="number" value="12" min="1"></label>
+          <label><span>vRAM</span><input id="vram" type="number" value="8" min="1"></label>
+          <label><span>vCPU</span><input id="vcpu" type="number" value="8" min="1"></label>
+        </div>
+        <button id="plan" class="primary">Plan Run</button>
+      </header>
+
+      <section id="dashboard" class="view active">
+        <div class="metrics">
+          <article class="metric">
+            <span>Available RAM</span>
+            <strong id="ramMetric">7.4 GB</strong>
+            <meter min="0" max="32" value="7.4"></meter>
+          </article>
+          <article class="metric">
+            <span>CPU Threads</span>
+            <strong id="cpuMetric">12</strong>
+            <meter min="0" max="24" value="12"></meter>
+          </article>
+          <article class="metric">
+            <span>Cloud Need</span>
+            <strong id="cloudMetric">High</strong>
+            <meter min="0" max="100" value="72"></meter>
+          </article>
+        </div>
+        <section class="panel">
+          <h1>Run Plan</h1>
+          <div class="plan-grid">
+            <div>
+              <span class="label">Trim Profile</span>
+              <select id="profile">
+                <option value="standard">Standard</option>
+                <option value="aggressive">Aggressive</option>
+                <option value="recovery">Recovery</option>
+              </select>
+            </div>
+            <div>
+              <span class="label">Provider</span>
+              <select id="provider">
+                <option>AnarchI Mainnet</option>
+                <option>Akash Decentralized</option>
+                <option>Kubernetes Cluster</option>
+              </select>
+            </div>
+            <label class="toggle">
+              <input id="applyTrim" type="checkbox">
+              <span>Apply trim changes</span>
+            </label>
+          </div>
+        </section>
+      </section>
+
+      <section id="trim" class="view">
+        <section class="panel">
+          <h1>Trim Plan</h1>
+          <ul id="trimActions" class="action-list"></ul>
+        </section>
+      </section>
+
+      <section id="bridge" class="view">
+        <section class="panel">
+          <h1>Bridge Request</h1>
+          <div id="bridgePlan" class="bridge-grid"></div>
+        </section>
+      </section>
+
+      <section id="plugins" class="view">
+        <section class="panel">
+          <h1>Plugin Marketplace</h1>
+          <div class="plugin-row">
+            <strong>sample_optimizer</strong>
+            <span>pre_run, post_run</span>
+            <button>Details</button>
+          </div>
+          <div class="plugin-row">
+            <strong>agent_cluster_guard</strong>
+            <span>pre_trim, post_bridge</span>
+            <button>Install</button>
+          </div>
+        </section>
+      </section>
+
+      <section id="logs" class="view">
+        <pre id="log" class="log">[ready] AnarchI Core GUI shell loaded.</pre>
+      </section>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

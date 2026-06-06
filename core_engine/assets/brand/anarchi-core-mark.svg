@@ -1,0 +1,11 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AnarchI Core mark</title>
+  <desc id="desc">A protocol-inspired AnarchI mark emphasizing the leading A and final I.</desc>
+  <rect width="512" height="512" rx="48" fill="#090B0E"/>
+  <circle cx="256" cy="256" r="194" stroke="#4D8DFF" stroke-width="10" stroke-dasharray="22 18" opacity="0.8"/>
+  <path d="M142 378L254 116L370 378" stroke="#EEF3F8" stroke-width="34" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M188 292H326" stroke="#45C486" stroke-width="28" stroke-linecap="square"/>
+  <path d="M388 136V378" stroke="#4D8DFF" stroke-width="28" stroke-linecap="square"/>
+  <path d="M388 92V112" stroke="#4D8DFF" stroke-width="28" stroke-linecap="square"/>
+  <text x="256" y="452" text-anchor="middle" fill="#95A3B3" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="4">CORE ENGINE</text>
+</svg>

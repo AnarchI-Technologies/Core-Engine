@@ -1,0 +1,28 @@
+[package]
+name = "anarchi-core"
+version = "0.2.0"
+edition = "2021"
+authors = ["AnarchI"]
+license = "Proprietary"
+description = "Plug-and-play resource trim and cloud bridge engine for AI, blockchain, and heavy local workloads."
+repository = "https://anarchi.local/core"
+
+[features]
+default = ["headless"]
+headless = []
+daemon = []
+gui-bindings = []
+
+[[bin]]
+name = "anarchi-core"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive", "env"] }
+directories = "5"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+sysinfo = "0.30"
+url = "2"

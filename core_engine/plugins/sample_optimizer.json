@@ -1,0 +1,9 @@
+{
+  "name": "sample_optimizer",
+  "version": "0.1.0",
+  "author": "AnarchI",
+  "description": "Example native manifest for a plugin that wants pre-run and post-run lifecycle hooks.",
+  "hooks": ["pre_run", "post_run"],
+  "entry": null,
+  "signature": null
+}

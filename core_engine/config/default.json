@@ -1,0 +1,36 @@
+{
+  "runtime_mode": "dry-run",
+  "profile": "standard",
+  "target": "https://example.com",
+  "requirements": {
+    "ram_gb": 4.0,
+    "vram_gb": 2.0,
+    "vcpu": 4,
+    "cloud_storage_gb": 20.0
+  },
+  "browser": {
+    "chromium_heap_mb": 3072,
+    "persistent_cache": true
+  },
+  "cloud": {
+    "active_provider": "anarchi_mainnet",
+    "providers": [
+      {
+        "name": "anarchi_mainnet",
+        "endpoint": "https://api.anarchi.io/v1",
+        "priority": 1
+      },
+      {
+        "name": "akash_decentralized",
+        "endpoint": "https://provider.akash.network",
+        "priority": 2
+      }
+    ]
+  },
+  "plugins_dir": "plugins",
+  "plugin_policy": {
+    "require_signatures": false,
+    "allow_native_sidecars": false,
+    "allow_stress_only_plugins": false
+  }
+}
