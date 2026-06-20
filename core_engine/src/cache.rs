@@ -17,14 +17,23 @@ pub fn cache_dir_for(target: &str) -> Result<PathBuf> {
 
 fn cache_key(target: &str) -> String {
     if let Ok(url) = Url::parse(target) {
-        let port = url.port().map(|port| format!(":{port}")).unwrap_or_default();
+        let port = url
+            .port()
+            .map(|port| format!(":{port}"))
+            .unwrap_or_default();
         let mut path = url.path().to_string();
         if !path.ends_with('/') {
             if let Some((prefix, _)) = path.rsplit_once('/') {
                 path = format!("{prefix}/");
             }
         }
-        return format!("{}://{}{}{}", url.scheme(), url.host_str().unwrap_or_default(), port, path);
+        return format!(
+            "{}://{}{}{}",
+            url.scheme(),
+            url.host_str().unwrap_or_default(),
+            port,
+            path
+        );
     }
 
     target.to_string()

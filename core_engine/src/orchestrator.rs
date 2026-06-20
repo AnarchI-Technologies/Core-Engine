@@ -48,10 +48,17 @@ pub fn plan(mut config: EngineConfig, request: EngineRequest) -> Result<EnginePl
         .unwrap_or(config.runtime_mode);
     let trim = trim::plan(profile, runtime_mode);
     let api_key_marker = request.api_key_present.then_some("present");
-    let bridge = bridge::plan(&hardware, &config.requirements, &config.cloud, api_key_marker)?;
+    let bridge = bridge::plan(
+        &hardware,
+        &config.requirements,
+        &config.cloud,
+        api_key_marker,
+    )?;
     let launch = launcher::prepare(&config.target, &config.browser)?;
-    let plugins =
-        plugins::load_manifests_with_policy(&PathBuf::from(&config.plugins_dir), &config.plugin_policy)?;
+    let plugins = plugins::load_manifests_with_policy(
+        &PathBuf::from(&config.plugins_dir),
+        &config.plugin_policy,
+    )?;
 
     Ok(EnginePlan {
         hardware,

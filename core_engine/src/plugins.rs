@@ -1,6 +1,9 @@
 use anyhow::{bail, Context, Result};
 use serde::{Deserialize, Serialize};
-use std::{fs, path::{Path, PathBuf}};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+};
 
 use crate::config::PluginPolicy;
 
@@ -30,7 +33,10 @@ pub fn load_manifests(dir: &Path) -> Result<Vec<PluginManifest>> {
     load_manifests_with_policy(dir, &PluginPolicy::default())
 }
 
-pub fn load_manifests_with_policy(dir: &Path, policy: &PluginPolicy) -> Result<Vec<PluginManifest>> {
+pub fn load_manifests_with_policy(
+    dir: &Path,
+    policy: &PluginPolicy,
+) -> Result<Vec<PluginManifest>> {
     if !dir.exists() {
         return Ok(Vec::new());
     }
@@ -68,10 +74,16 @@ pub fn validate_manifest(manifest: &PluginManifest, policy: &PluginPolicy) -> Re
         }
     }
     if policy.require_signatures && manifest.signature.is_none() {
-        bail!("plugin {} is unsigned and signatures are required", manifest.name);
+        bail!(
+            "plugin {} is unsigned and signatures are required",
+            manifest.name
+        );
     }
     if !policy.allow_native_sidecars && manifest.entry.is_some() {
-        bail!("plugin {} declares a native entry but sidecars are disabled", manifest.name);
+        bail!(
+            "plugin {} declares a native entry but sidecars are disabled",
+            manifest.name
+        );
     }
     Ok(())
 }

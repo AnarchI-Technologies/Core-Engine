@@ -47,7 +47,8 @@ fn bytes_to_gb(bytes: u64) -> f64 {
 
 fn current_exe_hash() -> Result<String> {
     let path = env::current_exe().context("failed to resolve current executable")?;
-    let mut file = File::open(&path).with_context(|| format!("failed to open {}", path.display()))?;
+    let mut file =
+        File::open(&path).with_context(|| format!("failed to open {}", path.display()))?;
     let mut hasher = Sha256::new();
     let mut buffer = [0_u8; 8192];
 

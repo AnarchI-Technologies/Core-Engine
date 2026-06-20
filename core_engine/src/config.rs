@@ -67,14 +67,16 @@ impl EngineConfig {
         let path = path.as_ref();
         let data = fs::read_to_string(path)
             .with_context(|| format!("failed to read config {}", path.display()))?;
-        serde_json::from_str(&data).with_context(|| format!("failed to parse config {}", path.display()))
+        serde_json::from_str(&data)
+            .with_context(|| format!("failed to parse config {}", path.display()))
     }
 
     pub fn save(&self, path: impl AsRef<Path>) -> Result<()> {
         let path = path.as_ref();
         if let Some(parent) = path.parent() {
-            fs::create_dir_all(parent)
-                .with_context(|| format!("failed to create config directory {}", parent.display()))?;
+            fs::create_dir_all(parent).with_context(|| {
+                format!("failed to create config directory {}", parent.display())
+            })?;
         }
         let data = serde_json::to_string_pretty(self).context("failed to serialize config")?;
         fs::write(path, data).with_context(|| format!("failed to write config {}", path.display()))

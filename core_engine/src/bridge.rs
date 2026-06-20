@@ -1,4 +1,7 @@
-use crate::{config::{CloudConfig, Requirements}, hardware::HardwareReport};
+use crate::{
+    config::{CloudConfig, Requirements},
+    hardware::HardwareReport,
+};
 use anyhow::{bail, Result};
 
 #[derive(Debug, Clone)]
@@ -23,7 +26,12 @@ pub fn plan(
         .providers
         .iter()
         .find(|provider| provider.name == cloud.active_provider)
-        .or_else(|| cloud.providers.iter().min_by_key(|provider| provider.priority));
+        .or_else(|| {
+            cloud
+                .providers
+                .iter()
+                .min_by_key(|provider| provider.priority)
+        });
 
     let Some(provider) = provider else {
         bail!("no cloud providers configured");

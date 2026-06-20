@@ -1,4 +1,3 @@
-use anyhow::Result;
 use anarchi_core::{
     bridge,
     config::{EngineConfig, Requirements},
@@ -6,6 +5,7 @@ use anarchi_core::{
     runtime::RuntimeMode,
     trim::{self, TrimProfile},
 };
+use anyhow::Result;
 use clap::{Parser, Subcommand, ValueEnum};
 use std::path::PathBuf;
 
@@ -244,7 +244,9 @@ fn run(
     let selected_runtime = if apply_trim {
         RuntimeMode::Production
     } else {
-        runtime_mode.map(RuntimeMode::from).unwrap_or(cfg.runtime_mode)
+        runtime_mode
+            .map(RuntimeMode::from)
+            .unwrap_or(cfg.runtime_mode)
     };
     let trim_plan = trim::plan(selected_profile, selected_runtime);
     trim::execute(&trim_plan)?;
@@ -258,7 +260,7 @@ fn run(
 
     let launch = launcher::prepare(&cfg.target, &cfg.browser)?;
     println!("{}", launch.render());
-    launcher::launch(&launch)?;
+    launcher::launch_with_mode(&launch, selected_runtime)?;
 
     plugins::print_hook_summary(&manifests, "post_run");
     Ok(())

@@ -92,7 +92,10 @@ pub fn execute(plan: &TrimPlan) -> Result<()> {
 
     for action in &plan.actions {
         if action.stress_only && !plan.runtime_mode.allows_simulation() {
-            bail!("stress-only action {} cannot run outside stress/debug mode", action.id);
+            bail!(
+                "stress-only action {} cannot run outside stress/debug mode",
+                action.id
+            );
         }
 
         println!(
@@ -156,7 +159,8 @@ fn standard_actions(actions: &mut Vec<TrimAction>) {
     actions.push(TrimAction {
         id: "windows-stop-sysmain",
         label: "Stop SysMain",
-        description: "Stops Windows SysMain prefetch service to reduce background disk and memory pressure.",
+        description:
+            "Stops Windows SysMain prefetch service to reduce background disk and memory pressure.",
         program: "net",
         args: vec!["stop", "SysMain", "/y"],
         recovery: Some(RecoveryAction {

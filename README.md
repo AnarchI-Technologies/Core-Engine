@@ -19,6 +19,8 @@ The old PowerShell/Electron implementation has been archived in `-old-parts-bin-
 
 By default, trimming is dry-run. Use `--apply` only when you want the engine to change the host system.
 
+The combined `run` command is side-effect gated too: dry-run, stress-test, and debug modes prepare and print launch plans without opening URLs or executables. Actual launch behavior is reserved for production/apply flows.
+
 ## Integration Modes
 
 - Headless CLI: operator and agent-managed runtime for AnarkI zkEVM nodes.

@@ -1,4 +1,4 @@
-use crate::{cache, config::BrowserConfig};
+use crate::{cache, config::BrowserConfig, runtime::RuntimeMode};
 use anyhow::{Context, Result};
 use std::{path::PathBuf, process::Command};
 use url::Url;
@@ -38,6 +38,18 @@ pub fn prepare(target: &str, browser: &BrowserConfig) -> Result<LaunchPlan> {
 }
 
 pub fn launch(plan: &LaunchPlan) -> Result<()> {
+    launch_with_mode(plan, RuntimeMode::Production)
+}
+
+pub fn launch_with_mode(plan: &LaunchPlan, runtime_mode: RuntimeMode) -> Result<()> {
+    if !runtime_mode.applies_real_changes() {
+        println!(
+            "launch=dry-run runtime_mode={:?} target={}",
+            runtime_mode, plan.target
+        );
+        return Ok(());
+    }
+
     match plan.mode {
         LaunchMode::Url => {
             println!("launch=system-browser target={}", plan.target);
@@ -50,6 +62,41 @@ pub fn launch(plan: &LaunchPlan) -> Result<()> {
                 .with_context(|| format!("failed to launch {}", plan.target))?;
             Ok(())
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::config::BrowserConfig;
+
+    fn browser_config() -> BrowserConfig {
+        BrowserConfig {
+            chromium_heap_mb: 1024,
+            persistent_cache: false,
+        }
+    }
+
+    #[test]
+    fn prepare_classifies_urls_without_launching() {
+        let plan = prepare("https://anarchi.example", &browser_config()).unwrap();
+
+        assert!(matches!(plan.mode, LaunchMode::Url));
+        assert!(plan.cache_dir.is_none());
+    }
+
+    #[test]
+    fn dry_run_launch_is_side_effect_free() {
+        let plan = prepare("definitely-not-a-real-binary.exe", &browser_config()).unwrap();
+
+        launch_with_mode(&plan, RuntimeMode::DryRun).unwrap();
+    }
+
+    #[test]
+    fn stress_launch_is_side_effect_free() {
+        let plan = prepare("https://anarchi.example", &browser_config()).unwrap();
+
+        launch_with_mode(&plan, RuntimeMode::StressTest).unwrap();
     }
 }
 
